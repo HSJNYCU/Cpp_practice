@@ -1,0 +1,4 @@
+﻿  CH5.cpp
+  The contents of <compare> are available only with C++20 or later.
+H:\我的雲端硬碟\Coding\Cpp_practice\SAMS\CH5\CH5\CH5.cpp(16,39): error C2059: 語法錯誤: '>'
+H:\我的雲端硬碟\Coding\Cpp_practice\SAMS\CH5\CH5\CH5.cpp(18,8): error C3536: 'resultofComparison': 無法在初始化之前使用
