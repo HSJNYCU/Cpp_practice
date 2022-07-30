@@ -1,37 +1,293 @@
-﻿// P.195 LISTING 8.9 Using Offset Values and Operators to Increment and Decrement Pointers
-#include<iostream>
-using namespace std;
+﻿//// P.214 LISTING 8.19 Using a const Reference to Ensure That the Calling Function Cannot Modify a Value Sent by Reference
+//#include<iostream>
+//using namespace std;
+//
+//void Square(const int& number, int& result)
+//{
+//	result = number * number;
+//}
+//
+//int main()
+//{
+//	cout << "Enter a number you wish to square: ";
+//	int number = 0;
+//	cin >> number;
+//
+//	int square = 0;
+//	Square(number, square);
+//	cout << "Number input is: " << number << ", and square reslut is: " << square << endl;
+//
+//	return 0;
+//}
 
-int main() 
-{
-	cout << "How many integer you wish to enter?" << endl;
-	int numEntries = 0;
-	cin >> numEntries;
 
-	int* ptr2Ints = new int[numEntries];
 
-	cout << "Allocated for integers " << endl;
-	for (int counter = 0; counter < numEntries; ++counter)
-	{
-		cout << "Enter number " << counter << ": ";
-		cin >> *(ptr2Ints + counter);
-		// Why cannot use cin >> *(ptr2Ints++); or cin >> *(++ptr2Ints);
-	}
 
-	cout << "Displaying all numbers entered: " << endl;
-	for (int i = 0; i < numEntries; ++i)
-		cout << *(ptr2Ints++) << " ";
 
-	cout << endl;
+//// P.212 LISTING 8.18 Function That Calculates Square Returned in a Parameter by Reference
+//#include<iostream>
+//using namespace std;
+//
+//void Square(int& number)
+//{
+//	number *= number;
+//}
+//
+//int main()
+//{
+//	cout << "Enter a number you wish to square: ";
+//	int num = 0;
+//	cin >> num;
+//
+//	Square(num);
+//	cout << "Square is:	" << num << endl;
+//
+//	return 0;
+//}
 
-	cout << "Now ptr2Ints is: 0x" << ptr2Ints << endl;
-	ptr2Ints -= numEntries;
-	cout << "After ptr2Ints -= numEntries, ptr2Ints is: 0x" << ptr2Ints << endl;
 
-	delete[] ptr2Ints;
-	
-	return 0;
-}
+
+
+//// P.210 LISTING 8.17 Demonstrating That References Are Aliases for Assigned Values
+//#include<iostream>
+//using namespace std;
+//
+//int main()
+//{
+//	int original = 30;
+//	cout << "original = " << original << endl;
+//	cout << "original is at address: " << hex << &original << endl;
+//
+//	int& ref1 = original;
+//	cout << "ref1 is at address: " << hex << &ref1 << endl;
+//	cout << "Value of ref1 is: " << dec << ref1 << endl;
+//
+//	int& ref2 = ref1;
+//	cout << "ref2 is at address: " << hex << &ref2 << endl;
+//	cout << "Therefore, ref2 = " << dec << ref2 << endl;
+//
+//	return 0;
+//}
+
+
+
+//// P.208 LISTING 8.16 Using new(nothrow), Which Returns NULL When Allocation Fails
+//#include<iostream>
+//using namespace std;
+//
+//int main()
+//{
+//	int* pointsToManyNums = new(nothrow) int[0xffffffff];
+//
+//	if (pointsToManyNums)
+//	{
+//		delete[] pointsToManyNums;
+//	}
+//	else
+//		cout << "Memory allocation failed";
+//	
+//	return 0;
+//}
+
+
+
+
+//// P.205 LISTING 8.14 Safer Pointer Programming: A Correction of Listing 8.13
+//#include<iostream>
+//using namespace std;
+//
+//int main()
+//{
+//	cout << "Is it sunny? (y/n)";
+//	char userInput = 'y';
+//	cin >> userInput;
+//
+//	bool* const isSunny = new bool;
+//	*isSunny = true;
+//
+//	if (userInput == 'n' || userInput == 'N')
+//	{
+//		*isSunny = false;
+//	}
+//
+//	cout << "*isSunny: " << *isSunny << endl;
+//	delete isSunny;
+//
+//	return 0;
+//}
+
+
+
+
+
+
+
+//// P.203 LISTING 8.13 Poor Pointer Hygiene in a Program That Stores a Boolean Value Using Pointers
+//#include<iostream>
+//using namespace std;
+//
+//int main() {
+//	// uninitialized pointer
+//	bool* isSunny = new bool;
+//
+//	cout << "Is it sunny? (y/n)" << endl;
+//	char userInput = 'y';
+//	cin >> userInput;
+//
+//	if (userInput == 'y')
+//	{
+//		//isSunny = new bool;
+//		*isSunny = true;
+//	}
+//
+//	// isSunny contains invalid value if user enter 'n'
+//	cout << "isSunny says: " << *isSunny << endl;
+//
+//	delete isSunny;
+//
+//	return 0;
+//}
+
+
+
+
+
+//// P.201 LISTING 8.12 Accessing Elements in an Array Using the Dereference Operator (*) and Using the Array Operator([]) with a Pointer
+//#include<iostream>
+//using namespace std;
+//
+//int main()
+//{
+//	const int ARRAY_LEN = 5;
+//
+//	int myNumbers[ARRAY_LEN] = { 1001, 2, 3, 4, 5 };
+//
+//	int* ptr2Nums = myNumbers;
+//
+//	cout << "Display array using pointer syntax, operator*: *(myNumbers+i)" << endl;
+//	for (int i = 0; i < ARRAY_LEN; ++i)
+//	{
+//		cout << "Element " << i << " = " << *(myNumbers+i) << endl;
+//	}
+//	
+//	cout << endl;
+//
+//	cout << "Display array using pty with array syntax, operator[]: ptr2Nums[i]" << endl;
+//	for (int i = 0; i < ARRAY_LEN; ++i)
+//	{
+//		cout << "Element " << i << " = " << ptr2Nums[i] << endl;
+//	}
+//	cout << endl;
+//
+//	cout << "Individual result:" << endl;
+//
+//	cout << "*myNumbers   = " << *myNumbers << endl;
+//	cout << "myNumbers[0] = " << myNumbers[0] << endl;
+//	cout << "*ptr2Nums    = " << *ptr2Nums << endl;
+//	cout << "ptr2Nums[0]  = " << ptr2Nums[0] << endl;
+//
+//	return 0;
+//}
+
+
+
+
+
+
+//// P.200 LISTING 8.11 Demonstrating That the Array Variable Is a Pointer to the First Element
+//#include<iostream>
+//using namespace std;
+//
+//int main()
+//{
+//	// static array of 5 integer
+//	int myNumbers[5]={0};
+//	
+//	int* pointToNums = myNumbers;
+//
+//	// Display address contained in pointer
+//	cout << "pointToNums =   0x" << hex << pointToNums << endl;
+//
+//	// Address of first element of array
+//	cout << "&myNumbers[0] = 0x" << hex << &myNumbers[0] << endl;
+//
+//	return 0;
+//}
+
+
+
+
+
+
+//// P.198 LISTING 8.10 Using the const Keyword in Calculating the Area of a Circle
+//#include<iostream>
+//using namespace std;
+//
+//void CalcArea(const double* const ptrPi,
+//	const double* const ptrRadius,
+//	double* const ptrArea)
+//{
+//	// check pointers for validity before using
+//	if (ptrPi && ptrRadius && ptrArea)
+//		*ptrArea = (*ptrPi) * (*ptrRadius) * (*ptrRadius);
+//}
+//
+//int main() 
+//{
+//	const double Pi = 3.1415;
+//	cout << "Enter radius: ";
+//	double radius = 0;
+//	cin >> radius;
+//
+//	double area = 0;
+//	CalcArea(&Pi, &radius, &area);
+//
+//	cout << "Area is: " << area << endl;
+//
+//	return 0;
+//}
+
+
+//// P.195 LISTING 8.9 Using Offset Values and Operators to Increment and Decrement Pointers
+//#include<iostream>
+//using namespace std;
+//
+//int main() 
+//{
+//	cout << "How many integer you wish to enter?" << endl;
+//	int numEntries = 0;
+//	cin >> numEntries;
+//
+//	int* ptr2Ints = new int[numEntries];
+//
+//	cout << "original value" << endl;
+//	for (int i = 0; i < numEntries; ++i)
+//	{
+//		cout << "the " << i << " value of *ptr2Ints is " << *ptr2Ints << endl;
+//	}
+//
+//	cout << "Allocated for integers " << endl;
+//	for (int counter = 0; counter < numEntries; ++counter)
+//	{
+//		cout << "Enter number " << counter << ": ";
+//		cin >> *(ptr2Ints + counter);
+//		// Why cannot use cin >> *(ptr2Ints++); or cin >> *(++ptr2Ints);
+//	}
+//
+//	cout << "Displaying all numbers entered: " << endl;
+//	for (int i = 0; i < numEntries; ++i)
+//		cout << *(ptr2Ints++) << " ";
+//
+//	cout << endl;
+//
+//	cout << "Now ptr2Ints is: 0x" << ptr2Ints << endl;
+//	ptr2Ints -= numEntries;
+//	cout << "After ptr2Ints -= numEntries, ptr2Ints is: 0x" << ptr2Ints << endl;
+//
+//	delete[] ptr2Ints;
+//	
+//	return 0;
+//}
 
 
 
